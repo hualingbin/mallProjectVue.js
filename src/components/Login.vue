@@ -28,7 +28,51 @@
     </div>
 </template>
 <script>
+    //import api from '../constant/api';
+    import {mapMutations} from "vuex";
+
     export default {
-        name: 'Login'
+        name: 'login',
+        data() {
+            return {
+                loginForm:{
+                    username:'',
+                    password:''
+                },
+                userToken:'',
+                rules:{
+                    username:[
+                        { required: true, message: '请输入用户名', trigger: 'blur' },
+                    ],
+                    password:[
+                        { required: true, message: '请输入密码', trigger: 'blur' },
+                    ]
+                }
+            }
+        },
+        methods: {
+            ...mapMutations(['changeLogin']),
+            submitForm() {
+                let v=this;
+                this.$axios({
+                    method: 'post',
+                    url: api.base_url+'/user/login',
+                    data:{
+                        'username':v.loginForm.username,
+                        'password':v.loginForm.password
+                    }
+                }).then(function(res){
+                    console.log(res.data);
+                    v.userToken = 'Bearer ' + res.data.token;
+                    // 将用户token保存到vuex中
+                    v.changeLogin({ Authorization:v.userToken });
+                    v.$router.push('/home');
+                    v.$message('登录成功');
+                }).catch(function(err){
+                    console.log("err",err);
+                    v.$message('密码或用户名错误');
+                })
+            }
+        }
     }
 </script>
