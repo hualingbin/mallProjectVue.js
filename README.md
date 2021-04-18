@@ -1,5 +1,6 @@
 # vueadminproject
-
+# PC端使用element-ui
+# 移动端使用mint-ui
 > A Vue.js project
 
 ## Build Setup
