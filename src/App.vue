@@ -1,20 +1,14 @@
 <template>
   <div id="app">
-    <!--引入head组件 -->
-    <webHead></webHead>
-    <!--页面动态显示区域-->
+    <!--页面动态显示区域,路由匹配到的组件将显示在这里-->
     <router-view/>
   </div>
 </template>
 
 <script>
-//引入header.vue,省略.vue后缀名
-import webHead from './components/webHead'
+
 export default {
-  name: 'App',
-  components:{
-    webHead
-  }
+  name: 'App'
 }
 </script>
 
