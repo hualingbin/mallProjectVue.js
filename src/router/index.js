@@ -1,4 +1,6 @@
 /**@是在 webpack.base.conf.js 文件里配置的，代表src*/
+/**引入index页面的allgoods子页面 */
+import allgoods from "@/views/allgoods";
 /**引入index页面的home子页面 */
 import Home from "@/views/home";
 /**引入index页面 */
@@ -13,12 +15,17 @@ export default new Router({
         path: '/',
         name: 'index',
         component: index,
-        children:[
+        children:[//子路由
             {
                 path: "/",
                 name: "Home",
                 component: Home
-            }
+            },
+            {
+                path: "/allgoods",
+                name: "allgoods",
+                component: allgoods
+            },
         ]
     }]
 })
