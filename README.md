@@ -1,5 +1,6 @@
-# vueadminproject
-
+# 描述：商城项目模板
+# PC端使用element-ui
+# 移动端使用mint-ui
 > A Vue.js project
 
 ## Build Setup
