@@ -13,7 +13,7 @@
         </div>
         <div class="allgoods">
             <ul>
-                <li v-for="(item,i) in allData" :key="i">
+                <li v-for="(item,i) in allData" :key="i" @click="goodsDetail(item.id)">
                     <!--<img :src="" alt=""/> -- > -->
                     <p>{{item.name}}</p>
                 </li>
@@ -35,10 +35,10 @@ export default {
         }
     },
     created(){
-        this.getData();
+        this.getData();//页面初始化时查询全部商品
     },
     methods:{
-        getData(){
+        getData(){//查询全部商品
             this.allData = listData.data.result;
             /**this.$axios.get()//http://api.mm2018.com.8090/api/goods/allGoods?page=1&size=8&sort=${this.sort}&priceGt=${this.minVal}&priceLte=${this.maxVal}
             .then(res=>{
@@ -46,7 +46,7 @@ export default {
                 this.allData = listData.data.result;
             })*/
         },
-        selectBtn(id){
+        selectBtn(id){//排序查询
             this.isActive = id;
             if(id == 1){
                 this.sort = ''
@@ -61,10 +61,16 @@ export default {
                 this.getData()
             }
         },
-        queryData(){
+        queryData(){//全部商品查询
             if(this.maxVal > this.minVal){
                 this.getData();
             }
+        },
+        goodsDetail(goodsId){//商品详情查询
+            //通过 $router 访问路由实例
+            this.$router.push({
+                path:`/detail?goodsId=${goodsId}`//返单引号可以避免转义操作
+            })
         }
     }
 }
