@@ -1,2 +1,2 @@
 # vueDemo
-many demo projects
+vue.js商城项目模板
